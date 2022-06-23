@@ -1,125 +1,83 @@
-const inquirer = require('inquirer');
-const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown.js');
+const inquirer = require('inquirer')
+const fs = require('fs')
+const generateMarkDown = require('./utils/generateMarkdown.js')
+const path = require('path') 
+
 
 const questions = [
+
     {
         type: 'input',
         name: 'title',
-        message: 'What is your Project Title? (Required)',
-        validate: titleInput => {
-            if (titleInput) {
-              return true;
-            }
-              else {
-                  console.log('Please enter your Project Title');
-              return false;
-            }
-        }
+        message: 'What will be the title for this project?',
     },
+
     {
         type: 'input',
         name: 'description',
-        message: 'Please add a detailed and informative Project Description'
+        message: 'What is the discription of this app?',
     },
+
     {
         type: 'input',
-        name: 'link',
-        message: 'Enter the GitHub link to your project'
+        name: 'instal',
+        message: 'Please write the instruction on how install dependecies to run this app: ',
     },
-    {
-        type: 'input',
-        name: 'installation',
-        message: 'Describe the steps and requirements for installing your application'
-    },
+
     {
         type: 'input',
         name: 'usage',
-        message: 'Provide usage instructions, helpful tips, examples, demos and/or screenshots here'
+        message: 'Please write the usage information for this app: ',
     },
+
+    {
+        type: 'option',
+        name: 'test',
+        message: 'Please write down the instruction on how to test this app: ',
+    },
+
     {
         type: 'input',
-        name: 'features',
-        message: "Describe your project's noteworthy features (optional)"
+        name: 'contributors',
+        message: 'Please enter contributors, if applicable: ',
     },
-    {
-        type: 'input',
-        name: 'tests',
-        message: 'Are there any tests for your application? If so, include them here'
-    },
-    {
-        type: 'input',
-        name: 'credits',
-        message: 'List your collaborators and any assets used that require attribution'
-    },
-    {
-        type: 'input',
-        name: 'contribute',
-        message: 'Can users contribute? Describe instuctions and guidelines for contributing to this project'
-    },
-    {
-        type: 'input',
-        name: 'username',
-        message: 'What is your GitHub username? (Required)',
-        validate: usernameInput => {
-            if (usernameInput) {
-              return true;
-            }
-              else {
-                  console.log('Please enter your GitHub username');
-              return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'What is your email address? (Required)',
-        validate: emailInput => {
-            if (emailInput) {
-              return true;
-            }
-              else {
-                console.log('Please enter your email address');
-              return false;
-            }
-        }
-    },
+
     {
         type: 'list',
         name: 'license',
-        message: 'Please choose a license type for your repository (select one)',
-        choices: [
-            'GNU GPLv2' ,
-            'GNU GPLv3' ,
-            'MIT' ,
-            'Academic Free License v3.0' ,
-            'Apache-2.0' ,
-            'BSD' ,
-            'BSD 2' ,
-            'BSD 3' ,
-            'Eclipse 1.0' ,
-            'Eclipse 2.0' ,
-            'LGPLv2.1' ,
-            'Microsoft Public']
+        message: 'Please choose a lincense for this app: ',
+        choices: ['MIT', 'BSD 3', 'APACHE 2.0', 'GPL 3.0', 'None'],
+    },
+
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Please enter your github username',
+    },
+
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter your email address',
     },
 ];
 
+
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, err => {
-        if (err) {
-            return console.log(err);
-        }
-        console.log('Your README has been generated! Find it in the output folder')
+    fs.writeFileSync(fileName + '.md', data, (err) => {
+        err ? console.log("whoops, error") : console.log("made my day")
     });
 };
 
+
+
 function init() {
     inquirer.prompt(questions)
-    .then(data => {
-        const readmeData = generateMarkdown(data);
-        writeToFile('./output/README.md', readmeData);
-    });
+        .then((response) => {
+            console.log('README is being created...');
+            writeToFile('README', generateMarkDown(response))
+        });
 };
+
 
 init();
