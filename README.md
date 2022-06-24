@@ -36,7 +36,7 @@ THEN I am taken to the corresponding section of the README
 
 ## Video Demo
 
-![Demo](Untitled_%Jun%24,%2022%12_35%AM.gif) 
+![Demo](/Untitled_%Jun%24,%2022%12_35%AM.gif) 
 
 ## Questions
 
