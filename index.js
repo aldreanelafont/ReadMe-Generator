@@ -15,13 +15,13 @@ const questions = [
     {
         type: 'input',
         name: 'description',
-        message: 'What is the discription of this app?',
+        message: 'Please write an appropriate description for this app?',
     },
 
     {
         type: 'input',
         name: 'instal',
-        message: 'Please write the instruction on how install dependecies to run this app: ',
+        message: 'Please write instructions on how install dependecies to run this app: ',
     },
 
     {
@@ -33,7 +33,7 @@ const questions = [
     {
         type: 'option',
         name: 'test',
-        message: 'Please write down the instruction on how to test this app: ',
+        message: 'Please write down the instructions on how to test this app: ',
     },
 
     {
