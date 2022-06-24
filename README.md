@@ -36,7 +36,7 @@ THEN I am taken to the corresponding section of the README
 
 ## Video Demo
 
-<img src= "Untitled_ Jun 24, 2022 12_35 AM.webm">
+<img src= "Untitled_ Jun 24, 2022 12_35 AM.gif">
 
 ## Questions
 
